@@ -10,7 +10,7 @@ A full-stack fitness tracking application built using the MERN stack and MySQL. 
 - Responsive UI with dark/light mode toggle
 - MySQL backend with connection pooling
 
-## 📸 Screenshot
+## 📸 Preview
 
 ![App Screenshot](./docs/image.png)
 
@@ -30,6 +30,30 @@ db/ // SQL scripts and config
 
 ## 📌 Getting Started
 
-1. Clone the repo  
-2. `cd client && npm install && npm run dev`  
-3. `cd server && npm install && npm start`
+# 1. Clone the repo
+
+# 2. 🗄️ Database Setup
+
+This project uses MySQL for data storage. Follow the steps below to set up the database:
+
+## 📦 Requirements
+
+- MySQL server (local or remote)
+- MySQL Workbench or CLI
+
+## 🔧 Steps
+
+1. Open MySQL Workbench
+2. Run `schema.sql` to create the `fitness_tracker` DB and tables
+3. (Optional) Run `seed.sql` to populate with sample data
+
+Alternatively, from the CLI:
+
+```bash
+mysql -u root -p < schema.sql
+mysql -u root -p < seed.sql  # if you want test data
+```
+
+# 3. Run the Client and Server
+`cd client && npm install && npm run dev`  
+`cd server && npm install && npm start`
