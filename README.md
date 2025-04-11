@@ -16,7 +16,7 @@ A full-stack fitness tracking application built using the MERN stack and MySQL. 
 
 ## 🔧 Tech Stack
 
-- **Frontend**: React (Vite), Bootstrap
+- **Frontend**: React (Vite), TailwindCSS
 - **Backend**: Express.js, Node.js
 - **Database**: MySQL
 - **Charting**: Recharts
@@ -24,8 +24,8 @@ A full-stack fitness tracking application built using the MERN stack and MySQL. 
 
 ## 📂 Folder Structure
 
-client/ // React frontend
-server/ // Express backend
+frontend/ // React frontend
+backend/ // Express backend
 db/ // SQL scripts and config
 
 ## 📌 Getting Started
@@ -55,5 +55,5 @@ mysql -u root -p < seed.sql  # if you want test data
 ```
 
 # 3. Run the Client and Server
-`cd client && npm install && npm run dev`  
-`cd server && npm install && npm start`
+`cd frontend && npm install && npm run dev`  
+`cd backend && npm install && npm start`
