@@ -24,9 +24,9 @@ A full-stack fitness tracking application built using the MERN stack and MySQL. 
 
 ## 📂 Folder Structure
 
-frontend/ // React frontend
-backend/ // Express backend
-db/ // SQL scripts and config
+- **frontend/** - React frontend
+- **backend/** - Express backend
+- **db/** - SQL scripts and config
 
 ## 📌 Getting Started
 
