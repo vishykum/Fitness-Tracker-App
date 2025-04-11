@@ -17,20 +17,26 @@ interface MusclemassChartProps {
 };
 
 const MusclemassChart: React.FC<MusclemassChartProps> = ({username, musclemassData, darkMode}) => {
-     const [isFocussed, setFocussed] = React.useState(false);
-     const [isEmpty, setIsEmpty] = React.useState(true);
+    const [isFocussed, setFocussed] = React.useState(false);
+    const [isEmpty, setIsEmpty] = React.useState(true);
 
-     React.useEffect(() => {
-        if (musclemassData.length > 0) {
-            setIsEmpty(false);
-        }
-        else setIsEmpty(true);
-     }, [musclemassData]);
+    const [max_mm, setMax_mm] = React.useState(0);
+    const [min_mm, setMin_mm] = React.useState(0);
+
+    React.useEffect(() => {
+    if (musclemassData.length > 0) {
+        setIsEmpty(false);
+    }
+    else setIsEmpty(true);
+
+    setMin_mm(Math.min(...musclemassData.map((item) => item.musclemass)));
+    setMax_mm(Math.max(...musclemassData.map((item) => item.musclemass)));
+    }, [musclemassData]);
      
 
     return (
         <>
-                    <div className={`w-full h-[50vh] mx-auto p-4 ${(isFocussed) ? 'opacity-100' : 'opacity-80'} bg-yellow-400 dark:bg-orange-400`}
+                    <div className={`w-full h-[50vh] mx-auto p-4 pl-0 ${(isFocussed) ? 'opacity-100' : 'opacity-80'} bg-yellow-400 dark:bg-orange-400`}
                         onMouseLeave={() => setFocussed(false)} onMouseEnter={() => setFocussed(true)}>
                         {isEmpty ? <h1 className="text-2xl font-bold text-center text-blue-800 dark:text-purple-800">No data to display</h1> :
                             (<ResponsiveContainer height={"100%"} width={"100%"}>
@@ -41,7 +47,7 @@ const MusclemassChart: React.FC<MusclemassChartProps> = ({username, musclemassDa
                             >
                                 <CartesianGrid strokeDasharray="3 3" stroke="#151515"/>
                                 <XAxis dataKey={"date"} stroke="#212529" />
-                                <YAxis stroke="#212529"/>
+                                <YAxis domain={[min_mm, max_mm]} stroke="#212529"/>
                                 <Tooltip content={(props) => (
                                     <div className="bg-linear-to-br from-blue-300 dark:from-purple-300 to-yellow-300 dark:to-orange-300 rounded-full border-2 border-black dark:border-white text-black dark:text-gray-900 px-2">
                                         {props.payload?.map((item) => {

@@ -13,6 +13,7 @@ const Login: React.FC<LoginProps> = ({isLoggedIn, setLoggedIn}) => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const navigate = useNavigate();
+    const [passwordIncorrect, setPasswordIncorrect] = React.useState(false);
 
     //Redirects to home page if already logged in
     React.useEffect(() => {
@@ -34,10 +35,18 @@ const Login: React.FC<LoginProps> = ({isLoggedIn, setLoggedIn}) => {
         }
 
         else {
-          console.error("Server error: ", JSON.stringify(response));
+          console.log("Server error: ", JSON.stringify(response));
         }
       }).catch((err) => {
-        if (err.response) console.error(`Error: ${JSON.stringify(err.response)}`);
+        if (err.response) {
+          if (err.response.data.message && err.response.data.message === "Invalid username or password") {
+            setPasswordIncorrect(true);
+
+            console.error("Invalid username or password");
+          }
+          
+          else console.error(`Error: ${JSON.stringify(err.response)}`);
+        }
         else console.error(`Error: ${JSON.stringify(err)}`);
       });
     }
@@ -53,15 +62,16 @@ const Login: React.FC<LoginProps> = ({isLoggedIn, setLoggedIn}) => {
             <div className="flex flex-col items-center m-23">
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <input required type="text" className='shadow-md shadow-gray-500 dark:shadow-gray-700 border border-black p-1 rounded bg-gradient-to-br from-white to-gray-200 dark:from-purple-700 dark:to-gray-700 text-black dark:text-white w-50 md:w-2xs' placeholder='username'  name="username" onChange={(e) => setUsername(e.target.value)}></input>
+                  <input required type="text" className='shadow-md shadow-gray-500 dark:shadow-gray-700 border border-black p-1 rounded bg-gradient-to-br from-white to-gray-200 dark:from-purple-700 dark:to-gray-700 text-black dark:text-white w-50 md:w-2xs' placeholder='username'  name="username" onChange={(e) => setUsername(e.target.value)} onClick={() => setPasswordIncorrect(false)}></input>
                 </div>
                 <div className="my-4">
-                  <input required type="password" className="shadow-md shadow-gray-500 dark:shadow-gray-700 border border-black p-1 rounded bg-gradient-to-br from-white to-gray-200 dark:from-purple-700 dark:to-gray-700 w-50 md:w-2xs text-black dark:text-white" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)}></input>
+                  <input required type="password" className="shadow-md shadow-gray-500 dark:shadow-gray-700 border border-black p-1 rounded bg-gradient-to-br from-white to-gray-200 dark:from-purple-700 dark:to-gray-700 w-50 md:w-2xs text-black dark:text-white" placeholder='password' name="password" onChange={(e) => setPassword(e.target.value)} onClick={() => setPasswordIncorrect(false)}></input>
                 </div>
                   <div className='text-center'>
                     <button type="submit" style={{margin: "10px", }} className='shadow-md shadow-gray-500 dark:shadow-gray-700 border p-2 rounded-full text-blue-600 dark:text-white bg-gray-800 border-blue-600 dark:border-white hover:bg-yellow-400 dark:hover:bg-purple-500 dark:hover:text-white active:bg-green-700 dark:active:bg-white active:text-white dark:active:text-gray-700' id="formsubmit">LOGIN</button>
                   </div>
               </form>
+              <span className={` ${(passwordIncorrect) ? '' : 'hidden'} text-xs text-red-600 dark:text-red-600  font-bold rounded-xl bg-blue-600/40 dark:bg-black/40 text-center `}>Incorrect username or password</span>
             </div>
           </div>
         </div>

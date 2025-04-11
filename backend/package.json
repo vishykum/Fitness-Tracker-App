@@ -13,5 +13,9 @@
     "mysql2": "^3.12.0",
     "util": "^0.12.5",
     "winston": "^3.17.0"
+  },
+  "scripts" : {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   }
 }

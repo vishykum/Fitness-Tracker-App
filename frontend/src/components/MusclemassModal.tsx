@@ -4,7 +4,7 @@ import { MuscleMass } from "../types";
 interface MusclemassModalProps {
     show: boolean;
     onClose: () => void;
-    onSubmit: (musclemass: number | null, operation: string, date?: string) => void;
+    onSubmit: (musclemass: number | null, operation: string, date?: string | null) => void;
     data : MuscleMass | null;
 }
 
@@ -54,7 +54,7 @@ const MusclemassModal: React.FC<MusclemassModalProps> = ({ show, onClose, onSubm
             console.log("change: ", formData);
             e.preventDefault();
 
-            onSubmit(formData, 'CHANGE');
+            onSubmit(formData, 'CHANGE', data.date);
             setFormData(null);
         }
     };
@@ -63,7 +63,7 @@ const MusclemassModal: React.FC<MusclemassModalProps> = ({ show, onClose, onSubm
         console.log("delete: ", formData);
         
         if (data) {
-            onSubmit(formData, 'DELETE');
+            onSubmit(formData, 'DELETE', data.date);
         }
         onClose();
     };

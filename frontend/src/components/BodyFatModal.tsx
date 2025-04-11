@@ -54,7 +54,7 @@ const BodyFatModal: React.FC<BodyFatModalProps> = ({ show, onClose, onSubmit, da
             console.log("change: ", formData);
             e.preventDefault();
 
-            onSubmit(formData, 'CHANGE');
+            onSubmit(formData, 'CHANGE', data.date);
             setFormData(null);
         }
     };
@@ -63,7 +63,7 @@ const BodyFatModal: React.FC<BodyFatModalProps> = ({ show, onClose, onSubmit, da
         console.log("delete: ", formData);
         
         if (data) {
-            onSubmit(formData, 'DELETE');
+            onSubmit(formData, 'DELETE', data.date);
         }
         onClose();
     };

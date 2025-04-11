@@ -10,8 +10,10 @@ const sendResponse = require('./api/sendResponse');
 const cmdLogger = require('./logger');
 const pool = require('./api/config');
 
+require('dotenv').config(); //Load environment variables
+
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.FRONTEND_URL,
     optionsSuccessStatus: 200,
     credentials: true,
 }));

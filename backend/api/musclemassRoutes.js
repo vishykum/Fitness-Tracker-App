@@ -7,6 +7,7 @@ const util = require('util');
 const poolQuery = util.promisify(pool.query).bind(pool);
 const cmdLogger = require('../logger');
 
+const mysql = require('mysql2');
 const table = 'MuscleMass';
 
 router.use(bodyParser.json());
@@ -111,6 +112,7 @@ router.delete('/delete', async (req, res) => {
         try {
             const results = await poolQuery(`DELETE FROM ${table} WHERE timestamp=? AND username=?;`, [userInfo.date, req.session.user.username]);
 
+            cmdLogger.debug(mysql.format(`DELETE FROM ${table} WHERE timestamp=? AND username=?;`, [userInfo.date, req.session.user.username]));
             cmdLogger.info('Entry deleted successfully');
             sendResponse(res, 200, "Entry deleted successfully");
         } catch (err) {
