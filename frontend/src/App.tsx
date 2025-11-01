@@ -3,7 +3,7 @@ import Home from "./pages/Home/Home"
 import Layout from './pages/Layout/Layout'
 import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
-import { HashRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Navbar from './components/Navbar'
 import './App.css'
 import axios from 'axios'
@@ -32,7 +32,7 @@ function App() {
   
   return (
     <>
-    <HashRouter basename='/fitness-tracker/'>
+    <BrowserRouter basename='/fitness-tracker/'>
     <div className="flex flex-col justify-start h-screen w-screen">
       <div className="sticky w-screen top-0">
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} isLoggedIn={username} setLoggedIn={setUsername}/>
@@ -47,7 +47,7 @@ function App() {
         </Routes>
       </div>
     </div>
-    </HashRouter>
+    </BrowserRouter>
     </>
   )
 }
