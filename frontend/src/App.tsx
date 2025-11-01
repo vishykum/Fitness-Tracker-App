@@ -32,7 +32,7 @@ function App() {
   
   return (
     <>
-    <HashRouter>
+    <HashRouter basename='/fitness-tracker/'>
     <div className="flex flex-col justify-start h-screen w-screen">
       <div className="sticky w-screen top-0">
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} isLoggedIn={username} setLoggedIn={setUsername}/>
