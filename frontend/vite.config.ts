@@ -7,5 +7,5 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss()],
-  base: '/fitness-tracker/'
+  base: '/Fitness-Tracker-App/'
 })
