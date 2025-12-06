@@ -7,7 +7,7 @@ const util = require('util');
 const poolQuery = util.promisify(pool.query).bind(pool);
 const cmdLogger = require('../logger');
 
-const table = 'Bodyfat';
+const table = 'bodyfat';
 
 router.use(express.json());
 router.use(bodyParser.json());

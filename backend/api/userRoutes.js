@@ -8,7 +8,7 @@ const poolQuery = util.promisify(pool.query).bind(pool);
 const cmdLogger = require('../logger');
 const { request } = require('http');
 
-const table = 'Users';
+const table = 'users';
 
 const router = express.Router();
 

@@ -8,7 +8,7 @@ const poolQuery = util.promisify(pool.query).bind(pool);
 const cmdLogger = require('../logger');
 
 const mysql = require('mysql2');
-const table = 'MuscleMass';
+const table = 'musclemass';
 
 router.use(bodyParser.json());
 
