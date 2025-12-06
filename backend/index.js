@@ -14,6 +14,8 @@ require('dotenv').config(); //Load environment variables
 
 const PORT = 8080;
 
+app.set("trust proxy", 1);
+
 app.use(cors({
     origin: process.env.FRONTEND_URL,
     optionsSuccessStatus: 200,
@@ -26,7 +28,7 @@ app.use(session({
     secret: 'A/P&u.:_OYD)k#F9',
     resave: false,
     saveUninitialized: true,
-    cookie: {sameSite: 'Lax', httpOnly: true, secure: false, maxAge: 1000 * 60 * 60 * 24}
+    cookie: {sameSite: 'none', httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 24}
 }));
 
 //Routes
