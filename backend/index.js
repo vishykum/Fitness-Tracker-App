@@ -12,6 +12,8 @@ const pool = require('./api/config');
 
 require('dotenv').config(); //Load environment variables
 
+const PORT = 8080;
+
 app.use(cors({
     origin: process.env.FRONTEND_URL,
     optionsSuccessStatus: 200,
@@ -37,7 +39,7 @@ app.get('/', (req, res) => {
     sendResponse(res, 200, "Success", (req.session.user) ? req.session.user : {});
 })
 
-const server = app.listen(3000, () => cmdLogger.info("Server running on PORT 3000"));
+const server = app.listen(PORT, () => cmdLogger.info("Server running on PORT 3000"));
 
 process.on('SIGINT', () => {
     cmdLogger.warn('Server process interrupted');
