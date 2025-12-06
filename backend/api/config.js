@@ -11,10 +11,7 @@ const pool = mysql.createPool({
     waitForConnections: true,
     connectionLimit: process.env.DB_CONECTION_LIMIT || 10,
     queueLimit: 0,
-    ssl: process.env.NODE_ENV === 'production' ? { //DB client only connects to production server with a valid certificate
-        ca: process.env.SSL_CERT_PATH,
-        rejectUnauthorized: true
-    } : false
+    ssl: false
 });
 
 module.exports = pool;
